@@ -1,3 +1,8 @@
+# Install the necessary libraries
+!pip install spacy
+!pip install openai
+!pip install nltk
+
 # Import the necessary libraries
 import spacy
 import random
@@ -18,7 +23,7 @@ while True:
 
     # Generate a response to the user's input using the NLG model
     response = model.generate(
-        prompt=f'Hilly is a wonderful person! What do you think about that?',
+        prompt='Hilly is a wonderful person! What do you think about that?',
         max_tokens=256,
         temperature=0.5,
         top_p=1.0,
