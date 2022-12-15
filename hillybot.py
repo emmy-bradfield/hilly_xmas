@@ -6,15 +6,14 @@ import openai
 
 # Setup openai api key
 openai.api_key = os.getenv("OPENAI_API_KEY")
-print(openai.api_key)
 
 # Define a database of facts about "Hilly"
 hilly_facts = [
-    "Hilly loves to paint.",
-    "Hilly is an excellent knitter.",
-    "Hilly is a talented writer.",
-    "Hilly has a passion for music.",
-    "Hilly is an avid reader.",
+    "Hilly loves to paint",
+    "Hilly is an excellent knitter",
+    "Hilly is a talented writer",
+    "Hilly has a passion for music",
+    "Hilly is an avid reader",
     "Hilly lives in Dover",
     "",
     "",
@@ -51,11 +50,11 @@ while True:
     # Generate a response to the user's input using the NLG model
     response = openai.Completion.create(
         engine="text-davinci-003",
-        prompt=f'Hilly is a wonderful person! {hilly_fact} What do you think about that?',
-        max_tokens=256,
-        temperature=0.8,
+        prompt=f'You think Hilly is a wonderful person and you are in love with her! {hilly_fact}. I have said {user_input} and I want you to find a way to relate that to Hilly and your love of her',
+        max_tokens=128,
+        temperature=0.7,
         top_p=0.9,
-        frequency_penalty=0.3,
+        frequency_penalty=-0.2,
         presence_penalty=0.3
     )
 
