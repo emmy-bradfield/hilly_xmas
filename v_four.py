@@ -1,10 +1,12 @@
 # Import the necessary libraries
 import spacy
+import os
 import random
-from openai import api_key, get_model
 import openai
 
-openai_apikey = "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"
+# Setup openai api key
+openai.api_key = os.getenv("OPENAI_API_KEY")
+print(openai.api_key)
 
 # Define a database of facts about "Hilly"
 hilly_facts = [
@@ -13,13 +15,14 @@ hilly_facts = [
     "Hilly is a talented writer.",
     "Hilly has a passion for music.",
     "Hilly is an avid reader.",
+    "Hilly lives in Dover",
+    "",
+    "",
+    "Hilly speaks many languages"
 ]
 
 # Load the pre-trained NLP model
 nlp = spacy.load('en_core_web_sm')
-
-# Load the pre-trained NLG model
-model = get_model('text-davinci-002')
 
 while True:
     # Prompt the user to enter their message
@@ -46,7 +49,8 @@ while True:
         hilly_fact = random.choice(hilly_facts)
 
     # Generate a response to the user's input using the NLG model
-    response = model.generate(
+    response = openai.Completion.create(
+        engine="text-davinci-003",
         prompt=f'Hilly is a wonderful person! {hilly_fact} What do you think about that?',
         max_tokens=256,
         temperature=0.5,
@@ -56,4 +60,4 @@ while True:
     )
 
     # Print the generated response
-    print(response)
+    print(response['choices'][0]['text'])
