@@ -1,7 +1,8 @@
 # Import the necessary libraries
 import spacy
 import random
-from openai import api_key, Model
+from openai import api_key, get_model
+import openai
 
 openai_apikey = "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"
 
@@ -18,7 +19,7 @@ hilly_facts = [
 nlp = spacy.load('en_core_web_sm')
 
 # Load the pre-trained NLG model
-model = Model.get_model('text-davinci-002')
+model = get_model('text-davinci-002')
 
 while True:
     # Prompt the user to enter their message
