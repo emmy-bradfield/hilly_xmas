@@ -1,28 +1,63 @@
-# Import necessary packages
-import torch
+# Import the necessary libraries
+import spacy
+import os
+import random
+import openai
 
-from transformers import *
+# Setup openai api key
+openai.api_key = os.getenv("OPENAI_API_KEY")
+print(openai.api_key)
 
-# Download and load the pre-trained RoBERTa model
-model = RobertaModel.from_pretrained('roberta-base')
-tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
-model.
+# Define a database of facts about "Hilly"
+hilly_facts = [
+    "Hilly loves to paint.",
+    "Hilly is an excellent knitter.",
+    "Hilly is a talented writer.",
+    "Hilly has a passion for music.",
+    "Hilly is an avid reader.",
+    "Hilly lives in Dover",
+    "",
+    "",
+    "Hilly speaks many languages"
+]
 
-# Create a prompt that specifies the instruction for how the model should generate a response
-prompt = "Respond by relating the user's message to how much you love Hilly"
+# Load the pre-trained NLP model
+nlp = spacy.load('en_core_web_sm')
 
-# Define a function that takes a user input and generates a response based on the prompt and the pre-trained model
-def generate_response(user_input):
+while True:
+    # Prompt the user to enter their message
+    user_input = input('Enter your message: ')
 
-    # Encode the prompt and user input as input to the model
-    input_ids = model.encoder(user_input, prompt)
+    # Use the NLP model to analyze and interpret the user's input
+    doc = nlp(user_input)
 
-    # Use the pre-trained model to generate a response
-    response = model.generate(input_ids)
+    # Create an empty list to store the selected facts
+    selected_facts = []
 
-    # Decode the response and return it
-    return model.decode(response, skip_special_tokens=True)
+    # Loop through the user's input and look for words or phrases related to each fact in the database
+    for fact in hilly_facts:
+        for token in doc:
+            # If a word or phrase related to the fact is found, add the fact to the selected facts list
+            if token.text in fact:
+                selected_facts.append(fact)
 
-# Prompt the user for input and pass it to the generate_response() function
-user_input = input("Enter your message: ")
-print(generate_response(user_input))
+    # If any facts were selected, choose a random fact from the selected facts list
+    if selected_facts:
+        hilly_fact = random.choice(selected_facts)
+    # If no facts were selected, choose a random fact from the entire database
+    else:
+        hilly_fact = random.choice(hilly_facts)
+
+    # Generate a response to the user's input using the NLG model
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=f'Hilly is a wonderful person! {hilly_fact} What do you think about that?',
+        max_tokens=256,
+        temperature=0.8,
+        top_p=0.9,
+        frequency_penalty=0.3,
+        presence_penalty=0.3
+    )
+
+    # Print the generated response
+    print(response['choices'][0]['text'])
