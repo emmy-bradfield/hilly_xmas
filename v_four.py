@@ -3,6 +3,8 @@ import spacy
 import random
 from openai import api_key, Model
 
+openai_apikey = "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"
+
 # Define a database of facts about "Hilly"
 hilly_facts = [
     "Hilly loves to paint.",
