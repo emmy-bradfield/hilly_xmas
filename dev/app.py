@@ -108,4 +108,4 @@ if __name__ == '__main__':
         
         # Clear the FACTS and PROMPT_FACTS arrays ready for the next response
         FACTS.clear()
-        FACT = ""''
+        FACT = ""
