@@ -61,7 +61,8 @@ if __name__ == '__main__':
         USER = input("You: ")
         # If the user's input is 'goodbye', exit the program
         if USER.lower() == "goodbye":
-            quit()
+            print("Bot: Okay, goodbye!")
+            os._exit(0)
         
         # Use the NLP model to analyse the sentiment of the user's input by creating a spaCy DOC object and tokenizing it
         DOC = NLP(USER)
