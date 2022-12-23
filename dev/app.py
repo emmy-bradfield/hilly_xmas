@@ -8,6 +8,17 @@ from time import sleep
 import dotenv as env
 import spacy as sp
 import openai as ai 
+import pyi_splash as splash
+
+# Load splash screen
+if splash.is_alive():
+    try:
+        splash.update_text("Loading Complete")
+        splash.close()
+    except ConnectionError:
+        print("unable to load splash screen")
+    except RuntimeError:
+        print("pyi_splash not initialized")
 
 # Load the environment variables from the .env file
 env.load_dotenv()
