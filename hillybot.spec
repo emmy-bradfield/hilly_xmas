@@ -3,7 +3,7 @@ from PyInstaller.utils.hooks import collect_all
 
 datas = [('.\\.env', '.')]
 binaries = []
-hiddenimports = []
+hiddenimports = ['C:\Users\44792\AppData\Local\Programs\Python\Python310\Lib\site-packages\en_core_web_sm']
 tmp_ret = collect_all('spacy')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
@@ -17,7 +17,7 @@ a = Analysis(
     binaries=binaries,
     datas=datas,
     hiddenimports=hiddenimports,
-    hookspath=['./dev/hooks'],
+    hookspath=['./dev/hooks/'],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
@@ -34,7 +34,7 @@ splash = Splash(
     text_pos=None,
     text_size=12,
     minify_script=True,
-    always_on_top=True,
+    always_on_top=False,
 )
 
 exe = EXE(
