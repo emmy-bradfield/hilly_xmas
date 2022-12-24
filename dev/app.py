@@ -23,7 +23,7 @@ if splash.is_alive():
 
 # Load the environment variables from the .env file
 env.load_dotenv()
-OPENAI_API_KEY = os.getenv("HILLYBOT_API")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Define the welcome text to appear on load
 WELCOME = """
