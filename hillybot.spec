@@ -3,7 +3,7 @@ from PyInstaller.utils.hooks import collect_all
 
 datas = [('.\\.env', '.')]
 binaries = []
-hiddenimports = ['C:\Users\44792\AppData\Local\Programs\Python\Python310\Lib\site-packages\en_core_web_sm']
+hiddenimports = ['C:/Users/44792/AppData/Local/Programs/Python/Python310/Lib/site-packages/en_core_web_sm']
 tmp_ret = collect_all('spacy')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 

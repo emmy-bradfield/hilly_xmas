@@ -9,6 +9,7 @@ import dotenv as env
 import spacy as sp
 import openai as ai 
 import pyi_splash as splash
+import en_core_web_sm as spacy_model
 
 # Load splash screen
 if splash.is_alive():
@@ -51,7 +52,7 @@ HILLY_FACTS = [
 ]
 
 # Load the pre-trained Natural Language Processing (NLP) model from spacy
-NLP = sp.load('en_core_web_sm')
+NLP = spacy_model.load()
 
 # Start the application
 if __name__ == '__main__':
@@ -102,6 +103,7 @@ if __name__ == '__main__':
         I will now also provide 0 or more facts about Hilly; you may use as many or as few as you like to assist.
         {FACT}.
         Unless told otherwise, assume all persons referenced by me are not Hilly, but are other people I know.
+        Respond in the form of dialogue; you are talking with me so conversation should flow two-way and naturally.
         """
         
         # Make an API call to the OpenAI model
