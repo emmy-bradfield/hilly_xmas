@@ -10,14 +10,14 @@ Emily and Ammar
 
 ## Setup and Installation
 
-### Quickstart (exec)
+### Quickstart (app)
 
 #### Requirements
 * A Windows machine on which to execute .exe files
 
 #### Setup
 
-1. navigate to ./exec
+1. navigate to ./app
 2. download the file hillybot.exe
 3. once download is complete, open hillybot.exe
 4. enjoy!
